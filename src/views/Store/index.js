@@ -1,22 +1,35 @@
 import styled from "styled-components";
 import { Input, Space } from "antd";
 import StoreBox from "./StoreBox";
+import { useState } from "react";
+import IndividualStore from "./IndivialStore";
 
 const { Search } = Input;
 
 const StoresPage = () => {
-
+  const [storeDisplay, setStoreDisplay] = useState(true);
+  const [chosenStore, setChosenStore] = useState({});
+  const toggleStoreDisplay = (store) => {
+    setStoreDisplay(!storeDisplay);
+    setChosenStore(store);
+  };
   return (
-    <Wrapper>
-      <Search
-        placeholder="input search text"
-        allowClear
-        enterButton="Search"
-        size="large"
-        onSearch={() => {}}
-      />
-      <StoreBox />
-    </Wrapper>
+    <>
+      {storeDisplay ? (
+        <Wrapper>
+          <Search
+            placeholder="input search text"
+            allowClear
+            enterButton="Search"
+            size="large"
+            onSearch={() => {}}
+          />
+          <StoreBox toggleStoreDisplay={toggleStoreDisplay} />
+        </Wrapper>
+      ) : (
+        <IndividualStore chosenStore={chosenStore} />
+      )}
+    </>
   );
 };
 

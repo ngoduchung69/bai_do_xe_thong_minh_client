@@ -24,11 +24,11 @@ const stores = [
   },
 ];
 
-const StoreBox = () => {
+const StoreBox = ({ toggleStoreDisplay }) => {
   return (
     <>
       {stores.map((store) => (
-        <Wrapper>
+        <Wrapper onClick={() => toggleStoreDisplay(store)}>
           <ImgBox>
             <Img src={store.imageSrc} />
           </ImgBox>
@@ -88,7 +88,7 @@ const Wrapper = styled.div`
   border-radius: 5px;
   margin: 10px;
   &:hover {
-      box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b;
+    box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b;
   }
 `;
 
